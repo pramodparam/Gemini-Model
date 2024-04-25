@@ -13,10 +13,11 @@ vision_model = genai.GenerativeModel('gemini-pro-vision')
 response = vision_model.generate_content(["Write a 100 words story from the Picture",image])
 
 
-# print(response.text)
+print(response.text)
 
 '''
-Result:
+Output:
+For image 'random.jpg'
 
 Once upon a time, there was a lion who was very thirsty. He went to a well to get a drink, but when he looked down, he saw that the water was very low. He could not reach it.
 
@@ -39,7 +40,8 @@ with their count present on the table",image])
 print(response.text)
 
 '''
-Result :
+Output :
+For image 'items.webp'
 
 json
 {
@@ -78,4 +80,40 @@ json
     }
   ]
 }
+'''
+
+#Describe an Image
+
+image = PIL.Image.open('random2.jpg')
+
+response = vision_model.generate_content(["Describe the image in a single sentence?",image])
+
+print(response.text)
+
+'''
+Output:
+For image 'random2.jpg'
+ A female swimmer wearing a black cap and blue swimsuit is swimming the freestyle stroke in a blue pool.
+'''
+
+#Compare Two Images
+
+image1=PIL.Image.open('random2.jpg')
+image2=PIL.Image.open('random3.jpg')
+
+response=vision_model.generate_content(["what are the differences between the two images?",image1,image2])
+
+print(response.text)
+
+
+'''
+Output:
+
+The first image is of a woman swimming in a pool. 
+The second image is of a street with cars driving on it.  
+The first image is in color, while the second image is in black and white. 
+The first image is taken from a low angle, while the second image is taken from a high angle. 
+The first image is focused on the woman, while the second image is focused on the cars. 
+The first image is about a person enjoying themselves, while the second image is about the hustle and bustle of city life.
+
 '''
